@@ -8,7 +8,7 @@ import retrofit2.http.GET
 interface ReservationService {
 
     @GET("/quandoo-assessment/customer-list.json")
-    fun getCustomers(): Flowable<List<Customer>>
+    fun updateCustomers(): Flowable<List<Customer>>
 
     @GET("/quandoo-assessment/table-map.json")
     fun getTables(): Flowable<List<Table>>

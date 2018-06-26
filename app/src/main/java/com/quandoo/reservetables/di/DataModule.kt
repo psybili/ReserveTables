@@ -5,7 +5,6 @@ import com.squareup.moshi.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
-import com.quandoo.reservetables.data.api.GitHubService
 import com.quandoo.reservetables.data.api.ReservationService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

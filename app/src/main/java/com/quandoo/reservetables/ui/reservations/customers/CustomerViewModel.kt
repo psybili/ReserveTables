@@ -12,10 +12,23 @@ import javax.inject.Inject
 
 class CustomerViewModel @Inject constructor(private val customerRepository: CustomerRepository)
     : ViewModel() {
-    val customers: LiveData<List<Customer>> = customerRepository.getCustomers()
+    val customers: LiveData<List<Customer>> = customerRepository.list
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .onErrorResumeNext(Flowable.empty())
             .toLiveData()
+
+    fun updateCustomerList() {
+        customerRepository.updateCustomers()
+                .map {
+                    for(customer: Customer in it) {
+                        customerRepository.create(customer)
+                    }
+                }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .onErrorResumeNext(Flowable.empty())
+                .subscribe()
+    }
 
 }

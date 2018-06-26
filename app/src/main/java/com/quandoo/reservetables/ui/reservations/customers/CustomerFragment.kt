@@ -40,6 +40,8 @@ class CustomerFragment : Fragment(), Injectable {
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(activity)
 
+        customerViewModel.updateCustomerList()
+
         customerViewModel.customers.observe(this) {
             it ?: return@observe
             adapter.run {

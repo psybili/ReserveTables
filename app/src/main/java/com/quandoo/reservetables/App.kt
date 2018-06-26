@@ -1,6 +1,7 @@
 package com.quandoo.reservetables
 
 import com.quandoo.reservetables.di.DaggerAppComponent
+import com.quandoo.reservetables.di.RoomModule
 import com.quandoo.reservetables.di.applyAutoInjector
 import dagger.android.support.DaggerApplication
 import javax.inject.Inject
@@ -12,6 +13,7 @@ class App : DaggerApplication() {
 
     override fun applicationInjector() = DaggerAppComponent.builder()
             .application(this)
+            .roomModule(RoomModule(this))
             .build()
 
     override fun onCreate() {

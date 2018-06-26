@@ -11,6 +11,7 @@ import javax.inject.Singleton
 @Component(modules = [
     AndroidSupportInjectionModule::class,
     AppModule::class,
+    RoomModule::class,
     UiModule::class
 ])
 interface AppComponent : AndroidInjector<App> {
@@ -19,6 +20,8 @@ interface AppComponent : AndroidInjector<App> {
     interface Builder {
         @BindsInstance
         fun application(application: App): Builder
+
+        fun roomModule(roomModule: RoomModule): Builder
 
         fun build(): AppComponent
     }

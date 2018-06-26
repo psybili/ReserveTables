@@ -30,6 +30,7 @@ android {
 
 ext.support_version = "27.1.1"
 ext.arch_runtime_version = "1.1.1"
+ext.room_version = "1.1.1"
 ext.arch_version = "1.1.1"
 ext.dagger_version = "2.15"
 ext.moshi_version = "1.5.0"
@@ -52,7 +53,10 @@ dependencies {
     implementation "android.arch.lifecycle:runtime:$arch_runtime_version"
     implementation "android.arch.lifecycle:extensions:$arch_version"
     implementation "android.arch.lifecycle:reactivestreams:$arch_version"
+    implementation "android.arch.persistence.room:runtime:$room_version"
+    implementation "android.arch.persistence.room:rxjava2:$room_version"
     kapt "android.arch.lifecycle:compiler:$arch_version"
+    kapt "android.arch.persistence.room:compiler:$room_version"
 
     // dagger
     implementation "com.google.dagger:dagger:$dagger_version"
