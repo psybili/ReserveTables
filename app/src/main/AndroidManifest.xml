@@ -17,15 +17,20 @@
             android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule"
             android:value="GlideModule"/>
 
-        <activity android:name="com.quandoo.reservetables.ui.reservations.customers.CustomerActivity">
+        <activity
+            android:name=".ui.customers.CustomerActivity"
+            android:label="@string/select_customer">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-        <activity android:name="com.quandoo.reservetables.ui.reservations.tables.TableActivity" />
+        <activity
+            android:name=".ui.tables.TableActivity"
+            android:label="@string/select_table"/>
+        <activity
+            android:name=".ui.reservations.ReservationsActivity"
+            android:label="@string/current_reservations"/>
     </application>
 
 </manifest>

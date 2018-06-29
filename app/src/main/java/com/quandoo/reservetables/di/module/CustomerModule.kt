@@ -6,8 +6,8 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 import com.quandoo.reservetables.di.ViewModelKey
-import com.quandoo.reservetables.ui.reservations.customers.CustomerViewModel
-import com.quandoo.reservetables.ui.reservations.customers.CustomerFragment
+import com.quandoo.reservetables.ui.customers.CustomerViewModel
+import com.quandoo.reservetables.ui.customers.CustomerFragment
 
 @Module
 internal abstract class CustomerModule {

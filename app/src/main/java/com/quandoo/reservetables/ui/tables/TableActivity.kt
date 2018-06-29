@@ -1,4 +1,4 @@
-package com.quandoo.reservetables.ui.reservations.customers
+package com.quandoo.reservetables.ui.tables
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -9,7 +9,7 @@ import dagger.android.support.HasSupportFragmentInjector
 import com.quandoo.reservetables.util.ext.setContentFragment
 import javax.inject.Inject
 
-class CustomerActivity : AppCompatActivity(), HasSupportFragmentInjector {
+class TableActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
   @Inject lateinit var androidInjector: DispatchingAndroidInjector<Fragment>
 
@@ -17,7 +17,7 @@ class CustomerActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.customer_activity)
-    setContentFragment(R.id.containerLayout) { CustomerFragment.newInstance() }
+    setContentView(R.layout.table_activity)
+    setContentFragment(R.id.tableContainerLayout) { TableFragment.newInstance() }
   }
 }

@@ -1,4 +1,4 @@
-package com.quandoo.reservetables.ui.reservations.customers
+package com.quandoo.reservetables.ui.customers
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel

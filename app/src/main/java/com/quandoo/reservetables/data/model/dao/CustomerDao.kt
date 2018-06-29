@@ -1,6 +1,5 @@
 package com.quandoo.reservetables.data.model.dao
 
-import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Query
 import com.quandoo.reservetables.data.model.Customer

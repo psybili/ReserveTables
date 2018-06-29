@@ -6,8 +6,8 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 import com.quandoo.reservetables.di.ViewModelKey
-import com.quandoo.reservetables.ui.reservations.tables.TableFragment
-import com.quandoo.reservetables.ui.reservations.tables.TableViewModel
+import com.quandoo.reservetables.ui.tables.TableFragment
+import com.quandoo.reservetables.ui.tables.TableViewModel
 
 @Module
 internal abstract class TableModule {
