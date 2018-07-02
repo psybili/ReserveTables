@@ -1,10 +1,8 @@
 package com.quandoo.reservetables.di
 
-import android.app.Application
-import android.arch.lifecycle.ViewModelProvider
 import android.arch.persistence.room.Room
 import com.quandoo.reservetables.App
-import com.quandoo.reservetables.data.api.ReservationService
+import com.quandoo.reservetables.data.api.CustomerService
 import com.quandoo.reservetables.data.api.TableService
 import com.quandoo.reservetables.data.model.ReservationDatabase
 import com.quandoo.reservetables.data.model.dao.CustomerDao
@@ -30,9 +28,9 @@ class RoomModule(app: App) {
     @Singleton
     fun provideCustomerRepository(
             customerDao: CustomerDao,
-            reservationService: ReservationService
+            customerService: CustomerService
     ): CustomerRepository {
-        return CustomerRepository(reservationService, customerDao)
+        return CustomerRepository(customerService, customerDao)
     }
 
     @Provides
@@ -48,9 +46,9 @@ class RoomModule(app: App) {
     @Singleton
     fun provideReservationRepository(
             reservationDao: ReservationDao,
-            reservationService: ReservationService
+            customerService: CustomerService
     ): ReservationRepository{
-        return ReservationRepository(reservationService, reservationDao)
+        return ReservationRepository(customerService, reservationDao)
     }
 
     @Provides

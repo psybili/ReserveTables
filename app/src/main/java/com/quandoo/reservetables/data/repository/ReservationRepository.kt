@@ -1,18 +1,17 @@
 package com.quandoo.reservetables.data.repository
 
-import com.quandoo.reservetables.data.api.ReservationService
+import com.quandoo.reservetables.data.api.CustomerService
 import com.quandoo.reservetables.data.model.Reservation
 import com.quandoo.reservetables.data.model.dao.ReservationDao
-import io.reactivex.Completable
 import io.reactivex.Flowable
 import javax.inject.Inject
 
 class ReservationRepository @Inject constructor(
-        private val reservationService: ReservationService,
+        private val customerService: CustomerService,
         private val reservationDao: ReservationDao
-) {
+) : IRepository<Reservation> {
 
-    val list: Flowable<List<Reservation>>
+    override val list: Flowable<List<Reservation>>
         get() = reservationDao.reservationList
 
     fun create(reservation: Reservation) = reservationDao.insert(reservation)
@@ -23,6 +22,6 @@ class ReservationRepository @Inject constructor(
 
     fun delete(reservation: Reservation) = reservationDao.delete(reservation)
 
-    fun updateReservations() = reservationService.updateCustomers()
+    fun updateReservations() = customerService.updateCustomers()
 
 }

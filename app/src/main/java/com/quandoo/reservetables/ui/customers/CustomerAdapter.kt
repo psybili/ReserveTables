@@ -13,7 +13,7 @@ class CustomerAdapter : RecyclerView.Adapter<CustomerAdapter.ViewHolder>() {
     lateinit var itemClickListener: ItemClickListener
 
     interface ItemClickListener {
-        fun onItemClick(id: String)
+        fun onItemClick(customer: Customer)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,11 +27,20 @@ class CustomerAdapter : RecyclerView.Adapter<CustomerAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(customerList[position]) {
-            itemClickListener.onItemClick(it.customerLastName)
+            itemClickListener.onItemClick(it)
         }
     }
 
     override fun getItemCount() = customerList.size
+
+    override fun getItemViewType(position: Int): Int {
+        val currentCustomer = customerList[position]
+
+        return when {
+            currentCustomer.reservationInfo == null -> 0
+            else -> 1
+        }
+    }
 
     inner class ViewHolder(val binding: CustomerItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(currentItem: Customer, listener: (Customer) -> Unit) = with(binding) {

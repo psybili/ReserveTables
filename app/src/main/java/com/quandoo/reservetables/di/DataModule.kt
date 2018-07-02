@@ -1,6 +1,6 @@
 package com.quandoo.reservetables.di
 
-import com.quandoo.reservetables.data.api.ReservationService
+import com.quandoo.reservetables.data.api.CustomerService
 import com.quandoo.reservetables.data.api.TableService
 import dagger.Module
 import dagger.Provides
@@ -35,7 +35,7 @@ internal object DataModule {
     @Singleton
     @Provides
     @JvmStatic
-    fun provideReservationService(retrofit: Retrofit): ReservationService = retrofit.create(ReservationService::class.java)
+    fun provideReservationService(retrofit: Retrofit): CustomerService = retrofit.create(CustomerService::class.java)
 
     @Singleton
     @Provides

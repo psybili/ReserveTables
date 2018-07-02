@@ -12,17 +12,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.GridLayout
 import com.quandoo.reservetables.R
+import com.quandoo.reservetables.data.model.Customer
 import com.quandoo.reservetables.data.model.Reservation
-import com.quandoo.reservetables.data.model.Table
 import com.quandoo.reservetables.databinding.TableFragmentBinding
 import com.quandoo.reservetables.di.Injectable
 import com.quandoo.reservetables.ui.reservations.ReservationsActivity
 import com.quandoo.reservetables.util.ext.observe
-import java.util.*
 import javax.inject.Inject
 
 private const val EXTRA_CUSTOMER_ID = "EXTRA_CUSTOMER_ID"
-private const val EXTRA_CUSTOMER_LAST_NAME = "EXTRA_CUSTOMER_LAST_NAME"
+private const val EXTRA_CUSTOMER = "EXTRA_CUSTOMER"
 private const val EXTRA_TABLE_ID = "EXTRA_TABLE_ID"
 
 class TableFragment : Fragment(), Injectable {
@@ -33,7 +32,7 @@ class TableFragment : Fragment(), Injectable {
     private lateinit var binding: TableFragmentBinding
     private val adapter = TableAdapter()
 
-    private lateinit var customerLastName: String
+    private lateinit var extraCustomer: Customer
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             DataBindingUtil.inflate<TableFragmentBinding>(inflater, R.layout.table_fragment, container, false)
@@ -45,14 +44,14 @@ class TableFragment : Fragment(), Injectable {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        customerLastName = activity!!.intent.extras.getString(EXTRA_CUSTOMER_LAST_NAME)
+        extraCustomer = activity!!.intent.extras.getParcelable(EXTRA_CUSTOMER)
 
         tableViewModel = ViewModelProviders.of(activity!!, viewModelFactory).get(TableViewModel::class.java)
 
         adapter.itemClickListener =
                 object : TableAdapter.ItemClickListener {
                     override fun onItemClick(tableId: Long) {
-                        this@TableFragment.onItemClick(customerLastName, tableId)
+                        this@TableFragment.onItemClick(extraCustomer, tableId)
                     }
                 }
 
@@ -72,17 +71,15 @@ class TableFragment : Fragment(), Injectable {
 
     }
 
-    private fun onItemClick(customerLastName: String, tableId: Long) {
-        val reservation = Reservation(customerLastName, tableId)
+    private fun onItemClick(customer: Customer, tableId: Long) {
+        val reservation = Reservation(customer.customerLastName, tableId)
         tableViewModel.createReservations(reservation)
-        startReservationsActivity(customerLastName, tableId)
+        startReservationsActivity()
     }
 
-    private fun startReservationsActivity(customerLastName: String, tableId: Long) {
+    private fun startReservationsActivity() {
         val container = activity
         val i = Intent(container, ReservationsActivity::class.java)
-        i.putExtra(EXTRA_CUSTOMER_LAST_NAME, customerLastName)
-        i.putExtra(EXTRA_TABLE_ID, tableId)
         startActivity(i)
     }
 

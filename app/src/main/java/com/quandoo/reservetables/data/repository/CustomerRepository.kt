@@ -1,13 +1,13 @@
 package com.quandoo.reservetables.data.repository
 
-import com.quandoo.reservetables.data.api.ReservationService
+import com.quandoo.reservetables.data.api.CustomerService
 import com.quandoo.reservetables.data.model.Customer
 import com.quandoo.reservetables.data.model.dao.CustomerDao
 import io.reactivex.Flowable
 import javax.inject.Inject
 
 class CustomerRepository @Inject constructor(
-        private val reservationService: ReservationService,
+        private val customerService: CustomerService,
         private val customerDao: CustomerDao
 ) {
 
@@ -22,6 +22,6 @@ class CustomerRepository @Inject constructor(
 
     fun delete(customer: Customer) = customerDao.delete(customer)
 
-    fun updateCustomers() = reservationService.updateCustomers()
+    fun updateCustomers() = customerService.updateCustomers()
 
 }

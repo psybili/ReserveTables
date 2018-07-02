@@ -11,13 +11,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.quandoo.reservetables.R
+import com.quandoo.reservetables.data.model.Customer
 import com.quandoo.reservetables.databinding.CustomerFragmentBinding
 import com.quandoo.reservetables.di.Injectable
 import com.quandoo.reservetables.ui.tables.TableActivity
 import com.quandoo.reservetables.util.ext.observe
 import javax.inject.Inject
 
-private const val EXTRA_CUSTOMER_LAST_NAME = "EXTRA_CUSTOMER_LAST_NAME"
+private const val EXTRA_CUSTOMER = "EXTRA_CUSTOMER"
 
 class CustomerFragment : Fragment(), Injectable {
 
@@ -41,8 +42,8 @@ class CustomerFragment : Fragment(), Injectable {
 
         adapter.itemClickListener =
                 object : CustomerAdapter.ItemClickListener {
-                    override fun onItemClick(customerLastName: String) {
-                        this@CustomerFragment.onItemClick(customerLastName)
+                    override fun onItemClick(customer: Customer) {
+                        this@CustomerFragment.onItemClick(customer)
                     }
                 }
 
@@ -61,14 +62,14 @@ class CustomerFragment : Fragment(), Injectable {
         customerViewModel.updateCustomerList()
     }
 
-    private fun onItemClick(customerLastName: String) {
-        startTablesActivity(customerLastName)
+    private fun onItemClick(customer: Customer) {
+        startTablesActivity(customer)
     }
 
-    private fun startTablesActivity(customerLastName: String) {
+    fun startTablesActivity(customer: Customer) {
         val container = activity
         val i = Intent(container, TableActivity::class.java)
-        i.putExtra(EXTRA_CUSTOMER_LAST_NAME, customerLastName)
+        i.putExtra(EXTRA_CUSTOMER, customer)
         startActivity(i)
 
     }
